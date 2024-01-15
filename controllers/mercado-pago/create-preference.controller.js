@@ -11,7 +11,7 @@ const client = new MercadoPagoConfig({
 export const createPreference = async (req, res) => {
     const preference = new Preference(client);
     console.log(JSON.stringify(req.body, null, 2));
-    const {payer_info, external_reference, notification_url, items} = req.body;
+    const {payer_info, items} = req.body;
 
     const newPreference = await preference.create({
         body: {
@@ -33,8 +33,14 @@ export const createPreference = async (req, res) => {
 
             },
             items,
-            external_reference,
-            notification_url,
+            external_reference: "yildavilla@gmail.com",
+            notification_url: "https://cp.mp-certifications.avila.dev/api/handlePaymentNotification",
+            back_urls: {
+                success: "https://cp.mp-certifications.avila.dev/payment-summary",
+                pending: "https://cp.mp-certifications.avila.dev/payment-summary",
+                failure: "https://cp.mp-certifications.avila.dev/payment-summary",
+            },
+            auto_return: "all"
         },
     })
 

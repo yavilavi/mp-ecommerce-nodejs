@@ -33,13 +33,6 @@ const createPreference = async (params) => {
                 unit_price: Number(params.price),
             }
         ],
-        external_reference: "yildavilla@gmail.com",
-        notification_url: `${window.location.origin}/api/handlePaymentNotification`,
-        back_urls: {
-            success: `${window.location.origin}/payment-summary`,
-            pending: `${window.location.origin}/payment-summary`,
-            failure: `${window.location.origin}/payment-summary`,
-        }
     }
     $.ajax({
         type: "POST",
@@ -57,11 +50,12 @@ const startPayment = async () => {
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
     });
-    $("#pay-init-button").prop("disabled", true);
+    const pay_button = $("#pay-init-button");
+     pay_button.prop("disabled", true);
     try {
         await createPreference(params);
     } catch (e) {
-        $("#pay-init-button").show();
-        $("#pay-init-button").prop("disabled", false);
+        pay_button.show();
+        pay_button.prop("disabled", false);
     }
 }
