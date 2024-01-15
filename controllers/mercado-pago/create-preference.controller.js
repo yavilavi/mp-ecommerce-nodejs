@@ -34,7 +34,7 @@ export const createPreference = async (req, res) => {
             },
             items,
             external_reference: "yildavilla@gmail.com",
-            notification_url: "https://cp.mp-certifications.avila.dev/api/handlePaymentNotification",
+            notification_url: "https://cp.mp-certifications.avila.dev/api/ipn",
             back_urls: {
                 success: "https://cp.mp-certifications.avila.dev/payment-summary",
                 pending: "https://cp.mp-certifications.avila.dev/payment-summary",

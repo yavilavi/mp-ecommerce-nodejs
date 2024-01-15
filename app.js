@@ -2,8 +2,8 @@ import express from 'express'
 import exphbs from 'express-handlebars'
 import path from 'path';
 import { fileURLToPath } from 'url';
-import {createPreference} from './controllers/mercado-pago/create-preference.controller.js';
-import {handlePaymentNotification} from './controllers/mercado-pago/handle-payment-notification.js';
+import { createPreference } from './controllers/mercado-pago/create-preference.controller.js';
+import { handleInstantPaymentNotification } from './controllers/mercado-pago/handle-instant-payment-notification.js';
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
@@ -36,7 +36,7 @@ app.get('/payment-summary', function (req, res) {
 
 app.post('/api/createPreference', createPreference);
 
-app.post('/api/handlePaymentNotification', handlePaymentNotification);
+app.post('/api/ipn', handleInstantPaymentNotification);
 
 
 app.listen(port);
