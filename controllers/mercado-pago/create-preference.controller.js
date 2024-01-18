@@ -10,7 +10,6 @@ const client = new MercadoPagoConfig({
 
 export const createPreference = async (req, res) => {
     const preference = new Preference(client);
-    console.log(JSON.stringify(req.body, null, 2));
     const {payer_info, items} = req.body;
 
     const newPreference = await preference.create({
